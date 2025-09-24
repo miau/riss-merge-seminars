@@ -23,7 +23,7 @@ python main.py
 例: `python main.py https://example.com/ichiran_2026.pdf`
 
 スクリプトの振る舞い（簡単な説明）
-- `main.py` はまず METI の一覧 PDF を `ichiran.pdf` としてダウンロードします。
+- `main.py` はまず METI の一覧 PDF を `ichiran.pdf` としてダウンロードします（引数で URL を渡した場合はその URL の末尾をファイル名として保存します）。
 - PDF 中の注釈（リンク）から拡張子が `.pdf` の URL を抽出します。
 - 抽出した PDF を `downloads/` ディレクトリに `file_1.pdf`, `file_2.pdf`, ... のように保存します。
 - ダウンロードした PDF を順に結合し、ルートに `merged.pdf` として出力します。
