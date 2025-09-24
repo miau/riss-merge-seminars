@@ -1,0 +1,15 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+.Python
+env/
+venv/
+ENV/
+.env/
+downloads/
+ichiran.pdf
+merged.pdf
+*.log
+.vscode/
+.idea/
