@@ -1,10 +1,17 @@
+import sys
 import requests
 from PyPDF2 import PdfReader, PdfMerger
 import os
 
 # 1. 指定 PDF をダウンロード
-SRC_URL = "https://www.meti.go.jp/policy/it_policy/jinzai/tokutei_file/koushu_r7/250401_ichiran.pdf"
-SRC_FILE = "ichiran.pdf"
+# コマンドライン引数で URL を渡せる（例: python main.py https://.../ichiran.pdf）
+if len(sys.argv) > 1:
+    SRC_URL = sys.argv[1]
+    # URL の末尾をファイル名として使う（簡潔な処理）
+    SRC_FILE = os.path.basename(SRC_URL) or "ichiran.pdf"
+else:
+    SRC_URL = "https://www.meti.go.jp/policy/it_policy/jinzai/tokutei_file/koushu_r7/250401_ichiran.pdf"
+    SRC_FILE = "ichiran.pdf"
 
 print(f"Downloading source PDF: {SRC_URL}")
 headers = {

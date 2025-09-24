@@ -19,6 +19,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
+補足: 講習一覧 PDF の URL を指定したい場合は引数で渡せます。
+例: `python main.py https://example.com/ichiran_2026.pdf`
+
 スクリプトの振る舞い（簡単な説明）
 - `main.py` はまず METI の一覧 PDF を `ichiran.pdf` としてダウンロードします。
 - PDF 中の注釈（リンク）から拡張子が `.pdf` の URL を抽出します。
