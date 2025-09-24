@@ -21,16 +21,21 @@ with open(SRC_FILE, "wb") as f:
 
 # 2. PDF 内のリンクから .pdf のみ抽出
 reader = PdfReader(SRC_FILE)
-pdf_links = set()
+# 注釈順を保ちながら重複を除く: list と seen を使う
+pdf_links = []
+seen = set()
 
 for page in reader.pages:
-    if "/Annots" in page:
-        for annot in page["/Annots"]:
-            obj = annot.get_object()
-            if "/A" in obj and "/URI" in obj["/A"]:
-                uri = obj["/A"]["/URI"]
-                if uri.lower().endswith(".pdf"):
-                    pdf_links.add(uri)
+    annots = page.get("/Annots")
+    if not annots:
+        continue
+    for annot in list(annots):
+        obj = annot.get_object()
+        if "/A" in obj and "/URI" in obj["/A"]:
+            uri = obj["/A"]["/URI"]
+            if uri.lower().endswith(".pdf") and uri not in seen:
+                pdf_links.append(uri)
+                seen.add(uri)
 
 print(f"Found {len(pdf_links)} PDF links.")
 
